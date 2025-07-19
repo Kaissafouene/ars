@@ -1,0 +1,104 @@
+import { GecService } from './gec.service';
+import { CreateCourrierDto } from './dto/create-courrier.dto';
+import { SendCourrierDto } from './dto/send-courrier.dto';
+import { SearchCourrierDto } from './dto/search-courrier.dto';
+import { UpdateCourrierStatusDto } from './dto/update-courrier-status.dto';
+import { TemplateService, Template } from './template.service';
+export declare class GecController {
+    private readonly gecService;
+    private readonly templateService;
+    constructor(gecService: GecService, templateService: TemplateService);
+    listTemplates(): Promise<Template[]>;
+    getTemplate(id: string): Promise<Template>;
+    createTemplate(dto: Template): Promise<Template>;
+    updateTemplate(id: string, dto: Partial<Template>): Promise<Template>;
+    deleteTemplate(id: string): Promise<void>;
+    renderTemplate(id: string, variables: Record<string, string>): Promise<{
+        subject: string;
+        body: string;
+    }>;
+    createCourrier(dto: CreateCourrierDto, req: any): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        bordereauId: string | null;
+        type: import(".prisma/client").$Enums.CourrierType;
+        status: import(".prisma/client").$Enums.CourrierStatus;
+        subject: string;
+        body: string;
+        templateUsed: string;
+        sentAt: Date | null;
+        responseAt: Date | null;
+        uploadedById: string;
+    }>;
+    sendCourrier(id: string, dto: SendCourrierDto, req: any): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        bordereauId: string | null;
+        type: import(".prisma/client").$Enums.CourrierType;
+        status: import(".prisma/client").$Enums.CourrierStatus;
+        subject: string;
+        body: string;
+        templateUsed: string;
+        sentAt: Date | null;
+        responseAt: Date | null;
+        uploadedById: string;
+    }>;
+    searchCourriers(query: SearchCourrierDto, req: any): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        bordereauId: string | null;
+        type: import(".prisma/client").$Enums.CourrierType;
+        status: import(".prisma/client").$Enums.CourrierStatus;
+        subject: string;
+        body: string;
+        templateUsed: string;
+        sentAt: Date | null;
+        responseAt: Date | null;
+        uploadedById: string;
+    }[]>;
+    getCourrier(id: string, req: any): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        bordereauId: string | null;
+        type: import(".prisma/client").$Enums.CourrierType;
+        status: import(".prisma/client").$Enums.CourrierStatus;
+        subject: string;
+        body: string;
+        templateUsed: string;
+        sentAt: Date | null;
+        responseAt: Date | null;
+        uploadedById: string;
+    }>;
+    updateCourrierStatus(id: string, dto: UpdateCourrierStatusDto, req: any): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        bordereauId: string | null;
+        type: import(".prisma/client").$Enums.CourrierType;
+        status: import(".prisma/client").$Enums.CourrierStatus;
+        subject: string;
+        body: string;
+        templateUsed: string;
+        sentAt: Date | null;
+        responseAt: Date | null;
+        uploadedById: string;
+    }>;
+    deleteCourrier(id: string, req: any): Promise<{
+        id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        bordereauId: string | null;
+        type: import(".prisma/client").$Enums.CourrierType;
+        status: import(".prisma/client").$Enums.CourrierStatus;
+        subject: string;
+        body: string;
+        templateUsed: string;
+        sentAt: Date | null;
+        responseAt: Date | null;
+        uploadedById: string;
+    }>;
+}

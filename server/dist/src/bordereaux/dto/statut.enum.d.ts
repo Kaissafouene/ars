@@ -1,0 +1,10 @@
+export declare enum Statut {
+    EN_ATTENTE = "EN_ATTENTE",
+    SCAN_EN_COURS = "SCAN_EN_COURS",
+    SCAN_TERMINE = "SCAN_TERMINE",
+    ASSIGNE = "ASSIGNE",
+    TRAITE = "TRAITE",
+    CLOTURE = "CLOTURE",
+    EN_COURS = "EN_COURS",
+    PARTIEL = "PARTIEL"
+}
