@@ -8,8 +8,30 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() body: { email: string; password: string }) {
-    const user = await this.authService.validateUser(body.email, body.password);
-    return this.authService.login(user);
+    console.log(`[AUTH CONTROLLER] 1. Tentative de connexion reçue pour: ${body.email}`);
+    
+    try {
+      console.log(`[AUTH CONTROLLER] 2. Appel de authService.validateUser...`);
+      const user = await this.authService.validateUser(body.email, body.password);
+      
+      // La ligne ci-dessous peut afficher des informations sensibles dans les logs, à utiliser uniquement pour le débogage.
+      console.log(`[AUTH CONTROLLER] 3. 'validateUser' a retourné l'utilisateur.`); 
+      
+      const result = await this.authService.login(user);
+      console.log(`[AUTH CONTROLLER] 4. 'login' (création du JWT) a réussi.`);
+      
+      return result;
+
+    } catch (error) {
+      // SI QUELQUE CHOSE PLANTE, ON ATTRAPE L'ERREUR ICI !
+      console.error(`[AUTH CONTROLLER] !!! ERREUR ATTRAPÉE DANS LE CONTRÔLEUR !!!`);
+      console.error(`[AUTH CONTROLLER] Type de l'erreur: ${error.name}`);
+      console.error(`[AUTH CONTROLLER] Message de l'erreur: ${error.message}`);
+      console.error(`[AUTH CONTROLLER] Stack Trace:`, error.stack);
+      
+      // On renvoie l'erreur originale au frontend pour qu'il affiche le bon message
+      throw error;
+    }
   }
 
   @Post('register')
@@ -24,6 +46,8 @@ export class AuthController {
   @Post('logout')
   @UseGuards(JwtAuthGuard)
   async logout(@Req() req) {
+    // Pour une déconnexion réelle, vous devriez implémenter une liste noire de tokens.
+    // Pour l'instant, le client supprime simplement le token.
     return { message: 'Logged out' };
   }
 
