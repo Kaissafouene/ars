@@ -1,8 +1,9 @@
-fastapi==0.111.0
+fastapi==0.109.2
 uvicorn[standard]==0.29.0
 scikit-learn==1.4.2
 numpy==1.26.4
 spacy==3.7.4
+typer==0.9.0
 
 # On utilise le même modèle de langue, compatible avec spacy 3.7.x
 fr-core-news-sm @ https://github.com/explosion/spacy-models/releases/download/fr_core_news_sm-3.7.0/fr_core_news_sm-3.7.0-py3-none-any.whl
